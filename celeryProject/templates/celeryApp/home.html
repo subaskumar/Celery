@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% extends 'celeryApp/base.html' %}
+
+    {% block content %}
+    <div style="margin: 70px auto 30px auto; width: 30%;">
+        <h4 style="margin-top: 100px;">Input a Excel file to display data</h4>
+        <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="excelfile" ID="fileSelect" accept=".xlsx, .xls, .csv"/>
+            <input type="submit">
+        </form>
+    </div>
+    <div style="margin: 70px auto 30px auto; width: 40%;">
+        <h2 style="margin-top: 100px;">User Data :</h2>
+        <div>
+            <table>
+                {% for row in user_list %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{cell}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+    </div>
+        
+
+    {% endblock %}   
